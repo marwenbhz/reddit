@@ -13,10 +13,14 @@ BOT_NAME = 'reddit'
 
 SPIDER_MODULES = ['reddit.spiders']
 NEWSPIDER_MODULE = 'reddit.spiders'
+FEED_URI = '../data_reddit/csv/%(name)s%(time)s.csv'
+FEED_FORMAT = 'csv'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'reddit (+http://www.yourdomain.com)'
+USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0'
+
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
