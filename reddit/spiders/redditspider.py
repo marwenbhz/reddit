@@ -12,7 +12,7 @@ class RedditspiderSpider(scrapy.Spider):
     start_urls = ['http://www.reddit.com/r/pics/']
     custom_settings = {
     'LOG_FILE': 'logs/reddit.log',
-    'LOG_LEVEL':'ERROR'
+    'LOG_LEVEL':'DEBUG'
      }
     rules = [
     	Rule(LinkExtractor(
