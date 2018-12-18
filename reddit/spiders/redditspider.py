@@ -25,9 +25,10 @@ class RedditspiderSpider(scrapy.Spider):
 
     def parse(self, response):
         print('Processing...' + response.url)
-	item = RedditItem()
-	item['link'] = response.urljoin(response.css('div.imors3-1 > span > a.SQnoC3ObvgnGjWt90zD9Z::attr(href)').extract_first())
-	item['title'] = response.css('div.imors3-1 > span > a.SQnoC3ObvgnGjWt90zD9Z > h2.imors3-0::text').extract_first()
-	item['author'] = response.css('div.xvda30-0 > a._2tbHP6ZydRpjI44J3syuqC::text').extract_first().strip()
-        item['comments'] = response.css('span.FHCV02u6Cp2zYL0fhQPsO::text').extract_first()
-	yield item
+        item = RedditItem()
+	for pic in response.css('div.scrollerItem'):
+	    item['link'] = response.urljoin(pic.css('div.imors3-1 > span > a.SQnoC3ObvgnGjWt90zD9Z::attr(href)').extract_first())
+	    item['title'] = pic.css('div.imors3-1 > span > a.SQnoC3ObvgnGjWt90zD9Z > h2.imors3-0::text').extract_first()
+	    item['author'] = pic.css('div.xvda30-0 > a._2tbHP6ZydRpjI44J3syuqC::text').extract_first().strip()
+            item['comments'] = pic.css('span.FHCV02u6Cp2zYL0fhQPsO::text').extract_first()
+	    yield item
